@@ -34,7 +34,6 @@ module Timeliness
       'hh:nn:ss',
       'hh-nn-ss',
       'h:nn',
-      'h.nn',
       'h nn',
       'h-nn',
       'h:nn_ampm',
@@ -48,14 +47,19 @@ module Timeliness
       'yyyy-mm-dd',
       'yyyy/mm/dd',
       'yyyy.mm.dd',
+      'yyyy.m.d',
+      'yyyy.d.m',
       'm/d/yy',
       'd/m/yy',
       'm\d\yy',
       'd\m\yy',
       'd-m-yy',
+      'dd/mm/yy',
       'dd-mm-yyyy',
       'd.m.yy',
-      'd mmm yy'
+      'd mmm yy',
+      'ddd dd mmm yyyy',
+      'yyyy-dd mmm'
     ]
 
     @datetime_formats = [
@@ -72,10 +76,19 @@ module Timeliness
       'dd-mm-yyyy hh:nn:ss',
       'dd-mm-yyyy h:nn_ampm',
       'dd-mm-yyyy h:nn',
+      'mm/dd/yy h:nn tz',
+      'mm/dd/yy h:nn ampm tz',
+      'mm/dd/yy h:nn:ss',
+      'mm/dd/yy hh:nn:ss zo',
+      'mm/dd/yy hh:nn:ss ampm',
+      'mm/dd/yy hh:nn:ss',
+      'mmm dd, yyyy at hh:nn_ampm',
       'ddd, dd mmm yyyy hh:nn:ss tz', # RFC 822
       'ddd, dd mmm yyyy hh:nn:ss zo', # RFC 822
       'ddd mmm d hh:nn:ss zo yyyy', # Ruby time string
+      'yyyy-mm-dd hh:nn:ss tz',
       'yyyy-mm-ddThh:nn:ssZ', # ISO 8601 without zone offset
+      'yyyy-mm-ddThh:nn:ss.uZ', # ISO 8601 without zone offset, with usec
       'yyyy-mm-ddThh:nn:sszo', # ISO 8601 with zone offset
       'yyyy-mm-ddThh:nn:ss.u', # ISO 8601 with usec
       'yyyy-mm-ddThh:nn:ss.uzo' # ISO 8601 with usec and offset
@@ -84,6 +97,7 @@ module Timeliness
     # All tokens available for format construction. The token array is made of
     # regexp and key for format component mapping, if any.
     #
+
     @format_tokens = {
       'ddd'  => [ '\w{3,9}' ],
       'dd'   => [ '\d{2}',   :day ],

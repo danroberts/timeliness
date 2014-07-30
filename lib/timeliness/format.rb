@@ -55,11 +55,14 @@ module Timeliness
         position, code = Definitions.format_components[component]
         values[position] = code || "#{component}.to_i" if position
       end
-      instance_eval <<-DEF
-        def process(#{components.join(',')})
-          [#{values.map {|i| i || 'nil' }.join(',')}]
-        end
-      DEF
+      begin
+        instance_eval <<-DEF
+          def process(#{components.join(',')})
+            [#{values.map {|i| i || 'nil' }.join(',')}]
+          end
+        DEF
+      rescue SyntaxError
+      end
     end
 
   end
