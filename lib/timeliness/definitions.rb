@@ -49,6 +49,8 @@ module Timeliness
       'yyyy.mm.dd',
       'yyyy.m.d',
       'yyyy.d.m',
+      'yyyy/mm',
+      'yyyy-mm',
       'm/d/yy',
       'd/m/yy',
       'm\d\yy',
